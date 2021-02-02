@@ -1,9 +1,13 @@
 FROM elixir:1.11.3
 
-ENV NODE_VERSION 12.x
+ARG NODE_MAJOR
 
-RUN curl -sL https://deb.nodesource.com/setup_${NODE_VERSION} | bash \
-  && apt-get install -y nodejs inotify-tools
+RUN curl -sL https://deb.nodesource.com/setup_$NODE_MAJOR.x | bash -
+
+RUN apt-get install -y nodejs inotify-tools && \
+  apt-get clean && \
+  rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+  truncate -s 0 /var/log/*log
 
 RUN npm install npm@latest -g
 
@@ -12,7 +16,3 @@ RUN mix local.hex --force && \
   mix local.rebar --force
 
 WORKDIR /usr/local/sandbox
-
-COPY . .
-
-RUN mix deps.get

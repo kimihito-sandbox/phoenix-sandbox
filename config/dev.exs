@@ -5,7 +5,7 @@ config :sandbox, Sandbox.Repo,
   username: "postgres",
   password: "postgres",
   database: "sandbox_dev",
-  hostname: "db",
+  hostname: "postgres",
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
 

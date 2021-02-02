@@ -16,6 +16,7 @@ defmodule SandboxWeb.Router do
   scope "/", SandboxWeb do
     pipe_through :browser
 
+    get "/hello/:name", HelloController, :world
     get "/", PageController, :index
   end
 

@@ -30,6 +30,11 @@ interaction:
     command: mix
     compose_run_options: [no-deps]
 
+  iex:
+    service: runner
+    command: iex -S mix
+    compose_run_options: [no-deps]
+
   psql:
     description: Run psql console
     service: postgres

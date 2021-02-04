@@ -32,7 +32,7 @@ interaction:
 
   iex:
     service: runner
-    command: iex -S mix
+    command: iex
     compose_run_options: [no-deps]
 
   psql:

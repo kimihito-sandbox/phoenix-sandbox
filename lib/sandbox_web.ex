@@ -23,6 +23,7 @@ defmodule SandboxWeb do
 
       import Plug.Conn
       import SandboxWeb.Gettext
+      import SandboxWeb.Auth, only: [authenticate_user: 2]
       alias SandboxWeb.Router.Helpers, as: Routes
     end
   end
@@ -48,6 +49,7 @@ defmodule SandboxWeb do
 
       import Plug.Conn
       import Phoenix.Controller
+      import SandboxWeb.Auth, only: [authenticate_user: 2]
     end
   end
 

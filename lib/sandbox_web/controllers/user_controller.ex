@@ -4,7 +4,7 @@ defmodule SandboxWeb.UserController do
   alias Sandbox.Accounts
   alias Sandbox.Accounts.User
 
-  plug :authenticate when action in [:index, :show]
+  plug :authenticate_user when action in [:index, :show]
 
   @spec index(Plug.Conn.t(), any) :: Plug.Conn.t()
   def index(conn, _params) do
@@ -34,16 +34,5 @@ defmodule SandboxWeb.UserController do
         render(conn, "new.html", changeset: changeset)
     end
 
-  end
-
-  defp authenticate(conn, _opts) do
-    if conn.assigns.current_user do
-      conn
-    else
-      conn
-      |> put_flash(:error, "You must be logged in to access that page")
-      |> redirect(to: Routes.page_path(conn, :index))
-      |> halt()
-    end
   end
 end
